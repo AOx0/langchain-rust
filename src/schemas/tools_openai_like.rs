@@ -52,7 +52,7 @@ pub struct FunctionCallResponse {
 pub struct FunctionDetail {
     pub name: String,
     ///this should be an string, and this should be passed to the tool, to
-    ///then be deserilised inside the tool, becuase just the tools knows the names of the arguments.
+    ///then be deserilised inside the tool, because just the tools knows the names of the arguments.
     pub arguments: String,
 }
 

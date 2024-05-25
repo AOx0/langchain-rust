@@ -166,14 +166,14 @@ impl VectorStore for Store {
     ) -> Result<Vec<Document>, Box<dyn Error>> {
         let collection_name = self.get_name_space(opt);
         let filter = self.get_filters(opt)?;
-        let mut where_querys = filter
+        let mut where_queries = filter
             .iter()
             .map(|(k, v)| format!("(data.cmetadata ->> '{}') = '{}'", k, v))
             .collect::<Vec<String>>()
             .join(" AND ");
 
-        if where_querys.is_empty() {
-            where_querys = "TRUE".to_string();
+        if where_queries.is_empty() {
+            where_queries = "TRUE".to_string();
         }
 
         let sql = format!(
@@ -207,7 +207,7 @@ impl VectorStore for Store {
             self.collection_table_name,
             self.collection_table_name,
             collection_name,
-            where_querys,
+            where_queries,
         );
 
         let query_vector = self.embedder.embed_query(query).await?;

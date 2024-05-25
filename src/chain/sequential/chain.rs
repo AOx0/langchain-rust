@@ -52,7 +52,7 @@ impl Chain for SequentialChain {
                 .get(0)
                 .unwrap_or(&DEFAULT_OUTPUT_KEY.to_string())
                 .clone();
-            //Get the ouput complete result
+            //Get the output complete result
             let result = output
                 .get(DEFAULT_RESULT_KEY)
                 .unwrap_or(&json!(GenerateResult::default()))

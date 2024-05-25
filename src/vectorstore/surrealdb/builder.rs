@@ -17,7 +17,7 @@ pub struct StoreBuilder<C: Connection> {
 }
 
 impl<C: Connection> StoreBuilder<C> {
-    /// Create a new StoreBuilder optimized for SurrealDB. Refer to `new_with_compatiblity()` if
+    /// Create a new StoreBuilder optimized for SurrealDB. Refer to `new_with_compatibility()` if
     /// you are looking to connect to store created by python version of langchain.
     /// * table is singular - "document" instead of "documents"
     /// * uses single table instead of multiple tables
@@ -35,7 +35,7 @@ impl<C: Connection> StoreBuilder<C> {
     }
 
     /// Create a new StoreBuilder with compatibility with python version of langchain
-    pub fn new_with_compatiblity() -> Self {
+    pub fn new_with_compatibility() -> Self {
         StoreBuilder {
             db: None,
             collection_name: "documents".to_string(),

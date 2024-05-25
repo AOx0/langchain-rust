@@ -54,7 +54,7 @@ impl OpenAiToolAgent {
                 thoughts.push(Message::new_ai_message("").with_tool_calls(json!(tools)));
             }
 
-            // Add a tool message for each observation. Observation is the ouput of the tool call.
+            // Add a tool message for each observation. Observation is the output of the tool call.
             // tool_id is the id of the tool.
             thoughts.push(Message::new_tool_message(observation, tool_id));
         }
@@ -81,7 +81,7 @@ impl Agent for OpenAiToolAgent {
                     //Log tools will be send as log
                     let log: LogTools = LogTools {
                         tool_id: tool.id.clone(),
-                        tools: output.clone(), //We send the complete tools ouput, we will need it in
+                        tools: output.clone(), //We send the complete tools output, we will need it in
                                                //the open ai call
                     };
                     actions.push(AgentAction {

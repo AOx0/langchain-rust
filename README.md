@@ -228,7 +228,7 @@ Download additional sqlite_vss libraries from <https://github.com/asg017/sqlite-
 cargo add langchain-rust --features postgres
 ```
 
-#### With SurrialDB
+#### With SurrealDB
 
 ```bash
 cargo add langchain-rust --features surrealdb

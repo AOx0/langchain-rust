@@ -9,8 +9,8 @@ use std::io::{self, Write}; // Include io Library for terminal input
 #[tokio::main]
 async fn main() {
     let prompt = HumanMessagePromptTemplate::new(template_jinja2!(
-        "Give me a creative name for a store that sells: {{producto}}",
-        "producto"
+        "Give me a creative name for a store that sells: {{production}}",
+        "production"
     ));
 
     let llm = OpenAI::default().with_model(OpenAIModel::Gpt35);
@@ -29,7 +29,7 @@ async fn main() {
     let product = product.trim();
 
     let output = chain
-        .invoke(prompt_args!["producto" => product]) // Use product input here
+        .invoke(prompt_args!["production" => product]) // Use product input here
         .await
         .unwrap();
 

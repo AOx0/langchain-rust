@@ -16,11 +16,11 @@ use super::{AggregationMethod, RouteLayer};
 
 /// A builder for creating a `RouteLayer`.
 ///```rust,ignore
-/// let captial_route = Router::new(
-///     "captial",
+/// let capital_route = Router::new(
+///     "capital",
 ///     &[
 ///         "Capital of France is Paris.",
-///         "What is the captial of France?",
+///         "What is the capital of France?",
 ///     ],
 /// );
 /// let weather_route = Router::new(
@@ -33,7 +33,7 @@ use super::{AggregationMethod, RouteLayer};
 /// );
 /// let router_layer = RouteLayerBuilder::default()
 ///     .embedder(OpenAiEmbedder::default())
-///     .add_route(captial_route)
+///     .add_route(capital_route)
 ///     .add_route(weather_route)
 ///     .aggregation_method(AggregationMethod::Sum)
 ///     .threshold(0.82)

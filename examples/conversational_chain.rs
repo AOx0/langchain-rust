@@ -17,7 +17,7 @@ use langchain_rust::{
 async fn main() {
     let llm = OpenAI::default().with_model(OpenAIModel::Gpt35);
     //We initialise a simple memory,by default conveational chain have this memory, but we
-    //initiliase it as an example, if you dont want to have memory use DummyMemory
+    //initialise it as an example, if you dont want to have memory use DummyMemory
     let memory = SimpleMemory::new();
 
     let chain = ConversationalChainBuilder::new()

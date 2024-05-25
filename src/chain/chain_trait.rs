@@ -114,7 +114,7 @@ pub trait Chain: Sync + Send {
         &self,
         input_variables: PromptArgs,
     ) -> Result<HashMap<String, Value>, ChainError> {
-        log::info!("Using defualt implementation");
+        log::info!("Using default implementation");
         let result = self.call(input_variables.clone()).await?;
         let mut output = HashMap::new();
         let output_key = self
@@ -128,9 +128,9 @@ pub trait Chain: Sync + Send {
     }
     /// Stream the `Chain` and get an asynchronous stream of chain generations.
     /// The input is a set of variables passed as a `PromptArgs` hashmap.
-    /// If the chain have memroy, the tream method will not be able to automaticaly
-    /// set the memroy, bocause it will not know if the how to extract the output message
-    /// out of the stram
+    /// If the chain have memory, the tream method will not be able to automatically
+    /// set the memory, bocause it will not know if the how to extract the output message
+    /// out of the stream
     /// # Example
     ///
     /// ```rust,ignore
@@ -182,12 +182,12 @@ pub trait Chain: Sync + Send {
 
     // Get the input keys of the prompt
     fn get_input_keys(&self) -> Vec<String> {
-        log::info!("Using defualt implementation");
+        log::info!("Using default implementation");
         return vec![];
     }
 
     fn get_output_keys(&self) -> Vec<String> {
-        log::info!("Using defualt implementation");
+        log::info!("Using default implementation");
         return vec![
             String::from(DEFAULT_OUTPUT_KEY),
             String::from(DEFAULT_RESULT_KEY),

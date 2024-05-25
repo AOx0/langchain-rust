@@ -36,7 +36,7 @@ impl<C: Connection> Store<C> {
         }
     }
 
-    fn get_collection_metdata_key(&self) -> String {
+    fn get_collection_metadata_key(&self) -> String {
         self.collection_metadata_key_name
             .clone()
             .unwrap_or_else(|| "collection".to_string())
@@ -115,7 +115,7 @@ impl<C: Connection> VectorStore for Store<C> {
                 Some(collection_table_name) => {
                     let mut metadata: HashMap<String, Value> = doc.metadata.clone();
                     metadata.insert(
-                        self.get_collection_metdata_key(),
+                        self.get_collection_metadata_key(),
                         Value::String(self.collection_name.to_owned()),
                     );
 
@@ -193,7 +193,7 @@ impl<C: Connection> VectorStore for Store<C> {
             "#
             ))
             .bind(("collection_name", &collection_name))
-            .bind(("collection_metadata_key", &self.get_collection_metdata_key()))
+            .bind(("collection_metadata_key", &self.get_collection_metadata_key()))
             .bind(("score_threshold", opt.score_threshold.unwrap_or(0.0)))
             .bind(("k", limit))
             .bind(("embedding", &query_vector))

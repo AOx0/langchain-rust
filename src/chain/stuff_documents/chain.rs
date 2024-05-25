@@ -42,7 +42,7 @@ impl StuffDocument {
             .join(&self.separator)
     }
 
-    ///Inly use thi if you use the deafult prompt
+    ///Only use this if you use the default prompt
     pub fn qa_prompt_builder<'a>(&self) -> StuffQAPromptBuilder<'a> {
         StuffQAPromptBuilder::new()
     }
@@ -71,9 +71,9 @@ impl StuffDocument {
     /// .question("How old is luis and whats his favorite text editor")
     /// .build();
     ///
-    /// let ouput = chain.invoke(input).await.unwrap();
+    /// let output = chain.invoke(input).await.unwrap();
     ///
-    /// println!("{}", ouput);
+    /// println!("{}", output);
     /// ```
     ///
     pub fn load_stuff_qa<L: Into<Box<dyn LLM>>>(llm: L) -> Self {
@@ -104,9 +104,9 @@ impl StuffDocument {
     /// .question("How old is luis and whats his favorite text editor")
     /// .build();
     ///
-    /// let ouput = chain.invoke(input).await.unwrap();
+    /// let output = chain.invoke(input).await.unwrap();
     ///
-    /// println!("{}", ouput);
+    /// println!("{}", output);
     /// ```
     ///
     pub fn load_stuff_qa_with_options<L: LLM + 'static>(llm: L, opt: ChainCallOptions) -> Self {

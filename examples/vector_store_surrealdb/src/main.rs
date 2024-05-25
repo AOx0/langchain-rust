@@ -49,7 +49,7 @@ async fn main() {
         .await
         .unwrap();
 
-    // Intialize the tables in the database. This is required to be done only once.
+    // Initialize the tables in the database. This is required to be done only once.
     store.initialize().await.unwrap();
 
     // Add documents to the database

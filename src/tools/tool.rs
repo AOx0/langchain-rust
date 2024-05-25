@@ -11,7 +11,7 @@ pub trait Tool: Send + Sync {
 
     /// Provides a description of what the tool does and when to use it.
     fn description(&self) -> String;
-    /// This are the parametters for OpenAi-like function call.
+    /// This are the parameters for OpenAi-like function call.
     /// You should return a jsnon like this one
     /// ```json
     /// {
@@ -25,7 +25,7 @@ pub trait Tool: Send + Sync {
     ///     "required": ["command"]
     /// }
     ///
-    /// If there s no implementation the defaul will be the self.description()
+    /// If there s no implementation the default will be the self.description()
     ///```
     fn parameters(&self) -> Value {
         json!({

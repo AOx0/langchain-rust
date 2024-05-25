@@ -10,8 +10,8 @@ use std::io::{self, Write}; // Include io Library for terminal input
 async fn main() {
     let llm = OpenAI::default().with_model(OpenAIModel::Gpt35);
     let prompt = HumanMessagePromptTemplate::new(template_jinja2!(
-        "Dame un nombre creativo para una tienda que vende: {{producto}}",
-        "producto"
+        "Dame un nombre creativo para una tienda que vende: {{production}}",
+        "production"
     ));
 
     let get_name_chain = LLMChainBuilder::new()
@@ -43,7 +43,7 @@ async fn main() {
     let product = product.trim();
     let output = sequential_chain
         .execute(prompt_args! {
-            "producto" => product
+            "production" => product
         })
         .await
         .unwrap();

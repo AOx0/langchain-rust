@@ -169,6 +169,10 @@ mod tests {
     async fn test_pandoc_loader() {
         let path = "./src/document_loaders/test_data/sample.docx";
 
+        assert!(<std::path::PathBuf as std::str::FromStr>::from_str(path)
+            .unwrap()
+            .exists());
+
         let loader = PandocLoader::from_path(InputFormat::Docx.to_string(), path)
             .await
             .expect("Failed to create PandocLoader");

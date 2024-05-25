@@ -25,7 +25,7 @@ impl PromptTemplate {
     }
 }
 
-//PromptTemplate will be default transformed to an Human Input when used as FromatPrompter
+//PromptTemplate will be default transformed to an Human Input when used as FormatPrompter
 impl FormatPrompter for PromptTemplate {
     fn format_prompt(&self, input_variables: PromptArgs) -> Result<PromptValue, PromptError> {
         let messages = vec![Message::new_human_message(self.format(input_variables)?)];

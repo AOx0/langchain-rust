@@ -46,7 +46,7 @@ pub struct SQLDatabaseChain {
     pub(crate) database: SQLDatabase,
 }
 
-/// SQLChain let you interact with a db in human lenguage
+/// SQLChain let you interact with a db in human language
 ///
 /// The input variable name is `query`.
 /// Example

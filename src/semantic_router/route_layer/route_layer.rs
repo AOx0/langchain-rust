@@ -28,7 +28,7 @@ impl AggregationMethod {
 }
 
 #[derive(Debug, Clone)]
-pub struct RouteChoise {
+pub struct RouteChoice {
     pub route: String,
     pub similarity_score: f64,
     pub tool_input: Option<Value>,
@@ -119,47 +119,47 @@ impl RouteLayer {
         (top_route, top_scores)
     }
 
-    /// Call the route layer with a query and return the best route choise
+    /// Call the route layer with a query and return the best route choice
     /// If route has a tool description, it will also return the tool input
     pub async fn call<S: Into<String>>(
         &self,
         query: S,
-    ) -> Result<Option<RouteChoise>, RouteLayerError> {
+    ) -> Result<Option<RouteChoice>, RouteLayerError> {
         let query: String = query.into();
         let query_vector = self.embedder.embed_query(&query).await?;
 
-        let route_choise = self.call_embedding(&query_vector).await?;
+        let route_choice = self.call_embedding(&query_vector).await?;
 
-        if route_choise.is_none() {
+        if route_choice.is_none() {
             return Ok(None);
         }
 
         let router = self
             .index
-            .get_router(&route_choise.as_ref().unwrap().route) //safe to unwrap
+            .get_router(&route_choice.as_ref().unwrap().route) //safe to unwrap
             .await?;
 
         if router.tool_description.is_none() {
-            return Ok(route_choise);
+            return Ok(route_choice);
         }
 
         let tool_input = self
             .generate_tool_input(&query, &router.tool_description.unwrap())
             .await?;
 
-        Ok(route_choise.map(|route| RouteChoise {
+        Ok(route_choice.map(|route| RouteChoice {
             tool_input: Some(tool_input),
             ..route
         }))
     }
 
-    /// Call the route layer with a query and return the best route choise
+    /// Call the route layer with a query and return the best route choice
     /// If route has a tool description, it will not return the tool input,
     /// this just returns the route
     pub async fn call_embedding(
         &self,
         embedding: &[f64],
-    ) -> Result<Option<RouteChoise>, RouteLayerError> {
+    ) -> Result<Option<RouteChoice>, RouteLayerError> {
         let similar_routes = self.filter_similar_routes(&embedding).await?;
 
         if similar_routes.is_empty() {
@@ -180,7 +180,7 @@ impl RouteLayer {
         let (top_route, top_scores) =
             self.find_top_route_and_scores(total_scores, &scores_by_route);
 
-        Ok(top_route.map(|route| RouteChoise {
+        Ok(top_route.map(|route| RouteChoice {
             route,
             similarity_score: top_scores[0],
             tool_input: None,
@@ -216,11 +216,11 @@ mod tests {
     #[tokio::test]
     #[ignore]
     async fn test_route_layer_builder() {
-        let captial_route = Router::new(
-            "captial",
+        let capital_route = Router::new(
+            "capital",
             &[
                 "Capital of France is Paris.",
-                "What is the captial of France?",
+                "What is the capital of France?",
             ],
         );
         let description = String::from(
@@ -241,7 +241,7 @@ mod tests {
         .with_tool_description(description);
         let router_layer = RouteLayerBuilder::default()
             .embedder(OpenAiEmbedder::default())
-            .add_route(captial_route)
+            .add_route(capital_route)
             .add_route(weather_route)
             .aggregation_method(AggregationMethod::Sum)
             .build()

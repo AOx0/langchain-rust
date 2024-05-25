@@ -4,19 +4,19 @@ use regex::Regex;
 use super::{OutputParser, OutputParserError};
 
 pub struct MarkdownParser {
-    expresion: String,
+    expression: String,
     trim: bool,
 }
 impl MarkdownParser {
     pub fn new() -> Self {
         Self {
-            expresion: r"```(?:\w+)?\s*([\s\S]+?)\s*```".to_string(),
+            expression: r"```(?:\w+)?\s*([\s\S]+?)\s*```".to_string(),
             trim: false,
         }
     }
 
-    pub fn with_custom_expresion(mut self, expresion: &str) -> Self {
-        self.expresion = expresion.to_string();
+    pub fn with_custom_expression(mut self, expression: &str) -> Self {
+        self.expression = expression.to_string();
         self
     }
 

@@ -128,7 +128,7 @@ mod tests {
             "Calculator".to_string()
         }
         fn description(&self) -> String {
-            "Usefull to make calculations".to_string()
+            "Useful to make calculations".to_string()
         }
         async fn run(&self, _input: Value) -> Result<String, Box<dyn Error>> {
             Ok("25".to_string())

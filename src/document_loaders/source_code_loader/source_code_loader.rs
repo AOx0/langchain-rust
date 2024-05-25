@@ -128,7 +128,7 @@ mod tests {
     use super::*;
 
     #[tokio::test]
-    async fn test_sourse_code_loader() {
+    async fn test_source_code_loader() {
         let loader_with_dir =
             SourceCodeLoader::from_path("./src/document_loaders/test_data".to_string())
                 .with_dir_loader_options(DirLoaderOptions {
